@@ -50,6 +50,6 @@ pip install -r requirements.txt
 Then open the notebooks in order. The data is downloaded automatically.
 
 ## Possible next steps
-- More features: shots, Elo ratings, rest days between matches
+- More features like shots, Elo ratings, rest days between matches
 - Testing other leagues
 - Betting only on bigger disagreements, and checking whether results are statistically significant
