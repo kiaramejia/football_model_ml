@@ -15,6 +15,7 @@ Premier League results and Bet365 odds from 2015/16 to 2025/26, from
 | `02_backtest.ipynb` | Honest train/test split, strengths updated during the season, Brier score and log loss |
 | `03_ml.ipynb` | Logistic regression with recent form, then combined with the Poisson model |
 | `04_many_seasons.ipynb` | Rolling evaluation across 9 test seasons |
+| `05_beat_market.ipynb` | Line shopping, lower leagues and expected-value betting |
 | `football.py` | Reusable functions: strengths, Poisson predictions, form features |
 
 ## Method
@@ -40,6 +41,27 @@ Premier League results and Bet365 odds from 2015/16 to 2025/26, from
 - The bookmaker was the best predictor in every season.
 - Combining Poisson with recent form helped slightly on average (won 5 of 9 seasons), and helped more as training data grew.
 - No model would have been profitable: betting where the model disagreed with the bookmaker lost money (around −10% to −20% ROI).
+
+## Trying to beat the market (final experiment)
+
+Using expected value (EV = probability × odds − 1) to choose bets, with the best
+odds across bookmakers instead of Bet365 only, from 2020/21 to 2025/26:
+
+| League | Bet365 odds | Best odds |
+|---|---|---|
+| Premier League | −9.4% | −4.9% |
+| Championship | −6.9% | −2.8% |
+
+- **Line shopping** improved ROI by about 4–5 points in both leagues.
+- The **Championship** was the easiest market; League One and League Two were not
+  easier than the Championship.
+- **Pickier betting** (only bets with EV above 10% or 20%) did not help: the biggest
+  "edges" were usually model errors.
+- Best result: about −1.6% in the Championship, which is break-even at best,
+  before real-world limits like account restrictions.
+
+**Conclusion:** a model based on goals alone cannot beat bookmakers, even with the
+best available odds in less efficient leagues.
 
 ## How to run
 ```bash
